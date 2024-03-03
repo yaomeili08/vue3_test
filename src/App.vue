@@ -1,18 +1,54 @@
 <script setup>
-import { RouterLink, RouterView } from 'vue-router'
+import { RouterLink, RouterView} from 'vue-router'
+import { ref} from 'vue'
+let isCollapse = ref(true)
+const handleOpen = ()=>{
+  isCollapse.value = true
+}
+const handleClose = ()=>{
+  isCollapse.value = true
+}
 </script>
 
 <template>
-  <header>
+  <!-- <header>
     <div class="wrapper">
       <nav>
-        <!-- <RouterLink to="/">Home</RouterLink>
-        <RouterLink to="/about">About</RouterLink> -->
+        <RouterLink to="/search">Search</RouterLink>
       </nav>
     </div>
-  </header>
+  </header> -->
 
   <!-- <RouterView /> -->
+  <div class="common-layout">
+    <el-container>
+      <el-header>vue3项目练习</el-header>
+      <el-container>
+        <el-aside width="200px">
+          <el-menu
+            default-active="1"
+            class="el-menu-vertical-demo"
+            @open="handleOpen"
+            @close="handleClose"
+          >
+            <el-menu-item index="1" :route="{path: '/search'}">
+              <template #title>
+                <el-icon><location /></el-icon>
+                <span>search</span>
+              </template>
+            </el-menu-item>
+            <el-menu-item index="2" :route="{path: '/about'}">
+              <el-icon><icon-menu /></el-icon>
+              <span>adout</span>
+            </el-menu-item>
+          </el-menu>
+        </el-aside>
+        <el-main>
+          <RouterView />
+        </el-main>
+      </el-container>
+    </el-container>
+  </div>
 </template>
 
 <style scoped>
